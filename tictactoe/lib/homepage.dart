@@ -3,16 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
-
-
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  
+  String nameoh,nameex;
+  HomePage(this.nameoh,this.nameex);
+
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  
 
   bool ohturn = true; //first player is O!
   List<String> displayExOh = ['','','','','','','','',''];
@@ -43,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Player O", style: myNewFontWhite),
+                        Text("${widget.nameoh}", style: myNewFontWhite),
                         SizedBox(
                           height: 20
                         ),
@@ -56,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Player X", style: myNewFontWhite),
+                        Text("${widget.nameex}", style: myNewFontWhite),
                         SizedBox(
                           height: 20
                         ),
@@ -238,13 +240,14 @@ class _HomePageState extends State<HomePage> {
 
 
   void _showWinDialogue(String winner) {
+    if(winner == 'o'){
     showDialog(
       barrierDismissible: false,
       context: context,
       builder: (BuildContext context){
         return AlertDialog(
           //backgroundColor: Colors.grey,
-          title: Text(winner + " is WINNER!!!"),
+          title: Text("${widget.nameoh} is WINNER!!!"),
           actions: [
             FilledButton(
               child: Text("Play Again!"),
@@ -257,6 +260,28 @@ class _HomePageState extends State<HomePage> {
           ],
         );
     });
+    }
+    else if(winner == 'x'){
+      showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          //backgroundColor: Colors.grey,
+          title: Text("${widget.nameex} is WINNER!!!"),
+          actions: [
+            FilledButton(
+              child: Text("Play Again!"),
+              onPressed: () {
+                _clearBoard();
+                Navigator.of(context).pop();
+
+              },
+              ),
+          ],
+        );
+    });
+    }
 
     filledBoxes= 0;
 

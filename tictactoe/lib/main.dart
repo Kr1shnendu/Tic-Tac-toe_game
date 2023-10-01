@@ -1,8 +1,8 @@
 
 
 import 'package:flutter/material.dart';
-import 'homepage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'namepage.dart';
 
 
 
@@ -72,7 +72,7 @@ class IntroScreen extends StatelessWidget {
               Navigator.push(
                 context, 
                 MaterialPageRoute(
-                  builder: ((context) => HomePage()
+                  builder: ((context) => NamePage()
                   )
                 ),
               );
